@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-K4QPV6KQ');</script>
+<!-- End Google Tag Manager --><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Features – Ragsense</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com/">
+  <link href="./resources/css2" rel="stylesheet">
+  <style>
+    /* ===== Custom Fonts ===== */
+    @font-face {
+      font-family: 'ProfficeRegular';
+      src: url('./resources/ProfficeRegular.woff2') format('woff2');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    /* ===== CSS Variables ===== */
+    :root {
+      --brand-dark: #250379;
+      --brand-blue: #1C5AF0;
+      --brand-cyan: #1CF0F0;
+      --brand-purple: #8649DA;
+      --brand-mint: #16EAAA;
+      --brand-50: #f3e8ff;
+      --brand-100: #e9d5ff;
+      --brand-200: #d8b4fe;
+      --brand-300: #c084fc;
+      --brand-400: #a855f7;
+      --brand-500: #8649DA;
+      --brand-600: #7c3aed;
+      --brand-700: #6d28d9;
+      --brand-900: #250379;
+      --accent-400: #2dd4bf;
+      --accent-500: #16EAAA;
+      --accent-600: #0d9488;
+      --gray-50: #f9fafb;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --gray-300: #d1d5db;
+      --gray-500: #6b7280;
+      --gray-600: #4b5563;
+      --gray-700: #374151;
+      --gray-800: #1f2937;
+      --gray-900: #111827;
+      --white: #ffffff;
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+      --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+      --gradient-primary: linear-gradient(135deg, var(--brand-purple) 0%, var(--brand-cyan) 100%);
+      --gradient-dark: linear-gradient(135deg, var(--brand-dark) 0%, var(--brand-purple) 100%);
+      --gradient-bg: linear-gradient(180deg, #ffffff 0%, var(--gray-50) 50%, #ffffff 100%);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; line-height: 1.7; color: var(--gray-900); background: var(--white); overflow-x: hidden; }
+
+    h1, h2, h3, h4, h5, h6 { font-weight: 700; line-height: 1.2; color: var(--gray-900); margin-bottom: 1rem; }
+    h1 { font-family: 'ProfficeRegular', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: normal; letter-spacing: -0.02em; }
+    h2 { font-family: 'ProfficeRegular', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: normal; letter-spacing: -0.01em; }
+    h3 { font-size: 1.5rem; font-weight: 600; }
+    p { font-size: 1.125rem; color: var(--gray-700); margin-bottom: 1.5rem; }
+
+    .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+    .btn { display: inline-flex; align-items: center; justify-content: center; padding: 1rem 2rem; border-radius: 0.75rem; font-weight: 600; font-size: 1rem; text-decoration: none; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); border: none; cursor: pointer; }
+    .btn-primary { background: var(--gradient-primary); color: var(--white); box-shadow: var(--shadow-lg); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: var(--shadow-xl); }
+    .btn-secondary { background: rgba(255,255,255,0.15); color: var(--white); border: 2px solid rgba(255,255,255,0.3); }
+    .btn-secondary:hover { background: rgba(255,255,255,0.25); transform: translateY(-2px); }
+
+    /* ===== Navigation ===== */
+    .nav { position: fixed; top: 0; left: 0; right: 0; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--gray-200); z-index: 1000; padding: 1rem 0; transition: all 0.3s ease; }
+    .nav-container { display: flex; align-items: center; justify-content: space-between; }
+    .logo { display: flex; align-items: center; text-decoration: none; }
+    .logo img { height: 32px; width: auto; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--gray-700); text-decoration: none; font-weight: 500; transition: color 0.3s ease; }
+    .nav-links a:hover { color: var(--brand-purple); }
+    .nav-links a.active { color: var(--brand-purple); font-weight: 600; }
+    .nav-toggle { display: none; background: none; border: none; cursor: pointer; color: var(--gray-900); padding: 0.25rem; line-height: 0; z-index: 1001; }
+    .nav-toggle .icon-close { display: none; }
+    .nav-open .nav-toggle .icon-menu { display: none; }
+    .nav-open .nav-toggle .icon-close { display: block; }
+
+    /* ===== Features Hero ===== */
+    .features-hero {
+      background: linear-gradient(135deg, #0a0118 0%, #1a0450 50%, #250379 100%);
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 9rem 0 6rem;
+    }
+    .features-hero::before {
+      content: '';
+      position: absolute;
+      top: -30%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 900px;
+      height: 900px;
+      background: radial-gradient(circle, rgba(134,73,218,0.25) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .features-hero::after {
+      content: '';
+      position: absolute;
+      bottom: -10%;
+      right: -10%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(28,240,240,0.1) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .features-hero .container { position: relative; z-index: 2; text-align: center; }
+    .features-hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1.25rem;
+      background: rgba(134,73,218,0.2);
+      border: 1px solid rgba(134,73,218,0.4);
+      border-radius: 9999px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--brand-cyan);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+    .features-hero h1 {
+      color: var(--white);
+      -webkit-text-fill-color: white;
+      background: none;
+      font-size: clamp(2.25rem, 4.5vw, 3.645rem);
+      margin-bottom: 1.5rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .features-hero p {
+      color: rgba(255,255,255,0.65);
+      font-size: 1.2rem;
+      max-width: 620px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.6;
+    }
+    .hero-cta-row {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ===== Feature Rows ===== */
+    .feature-row {
+      padding: 6rem 0;
+      background: var(--white);
+    }
+    .feature-row.alt-bg {
+      background: var(--gray-50);
+    }
+    .feature-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .feature-split.reverse {
+      direction: rtl;
+    }
+    .feature-split.reverse > * {
+      direction: ltr;
+    }
+    .feature-tag {
+      display: inline-block;
+      color: var(--brand-purple);
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+    }
+    .feature-text h2 {
+      margin-bottom: 1.25rem;
+      color: var(--gray-900);
+    }
+    .feature-text p {
+      color: var(--gray-600);
+      line-height: 1.75;
+      margin-bottom: 1.25rem;
+    }
+    .feature-text p:last-of-type { margin-bottom: 0; }
+
+    /* ===== App Mockup ===== */
+    .app-mockup {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.18), 0 0 0 1px rgba(0,0,0,0.06);
+      background: #e8eaed;
+    }
+    .app-mockup-chrome {
+      background: #e8eaed;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .chrome-dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+    }
+    .chrome-dot:nth-child(1) { background: #fc615d; }
+    .chrome-dot:nth-child(2) { background: #fdbc40; }
+    .chrome-dot:nth-child(3) { background: #34c749; }
+    .app-mockup svg { display: block; width: 100%; height: auto; }
+
+    /* ===== Integrations Section ===== */
+    .integrations-section {
+      background: var(--gray-100);
+      padding: 7rem 0;
+    }
+    .integrations-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+    .integrations-header h2 { margin-bottom: 1rem; }
+    .integrations-header p { color: var(--gray-500); max-width: 600px; margin: 0 auto; }
+    .integration-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    .integration-card {
+      background: var(--white);
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 20px;
+      padding: 3rem 3rem 2.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .integration-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-xl);
+    }
+    .integration-icon {
+      width: 64px;
+      height: 64px;
+      margin-bottom: 1.5rem;
+    }
+    .integration-card h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 0.75rem;
+    }
+    .integration-card p {
+      color: rgba(0,0,0,0.5);
+      font-size: 1rem;
+      margin: 0;
+      line-height: 1.6;
+    }
+    .integration-arrow {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 42px;
+      height: 42px;
+      background: var(--gray-100);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .integration-arrow svg { width: 18px; height: 18px; color: var(--gray-500); }
+
+    /* ===== CTA Section ===== */
+    .cta-section {
+      background: var(--brand-dark);
+      padding: 6rem 0;
+      text-align: center;
+    }
+    .cta-section h2 {
+      font-family: 'ProfficeRegular', 'Inter', sans-serif;
+      font-weight: normal;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+    .cta-section p { color: rgba(255,255,255,0.7); max-width: 520px; margin: 0 auto 2.5rem; }
+    .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    /* ===== Footer ===== */
+    .footer { background: #000000; color: var(--white); padding: 5rem 0 3rem; }
+    .footer-logo { height: 32px; width: auto; margin-bottom: 1.5rem; }
+    .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 3rem; margin-bottom: 4rem; }
+    .footer h4 { color: var(--white); font-size: 1rem; font-weight: 600; margin-bottom: 1.5rem; }
+    .footer-links { list-style: none; }
+    .footer-links li { margin-bottom: 0.75rem; }
+    .footer-links a { color: rgba(255,255,255,0.6); text-decoration: none; transition: all 0.2s ease; }
+    .footer-links a:hover { color: var(--white); padding-left: 4px; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; text-align: center; }
+
+    /* ===== Responsive ===== */
+    @media (min-width: 1024px) {
+      .footer-content { grid-template-columns: 2fr 1fr 1fr; gap: 4rem; }
+    }
+    @media (max-width: 900px) {
+      .feature-split, .feature-split.reverse { grid-template-columns: 1fr; gap: 3rem; direction: ltr; }
+      .integration-cards { grid-template-columns: 1fr; }
+    }
+    .text-gradient {
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    @media (max-width: 768px) {
+      .nav-toggle { display: block; }
+      .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: rgba(255,255,255,0.98); padding: 0.5rem 2rem 1.5rem; gap: 0; border-top: 1px solid var(--gray-200); box-shadow: 0 4px 10px rgba(0,0,0,0.08); }
+      .nav-links li { padding: 0.85rem 0; border-bottom: 1px solid var(--gray-100); }
+      .nav-links li:last-child { border-bottom: none; }
+      .nav-open .nav-links { display: flex; }
+      .features-hero { min-height: auto; padding: 7rem 0 4rem; }
+      .feature-row { padding: 4rem 0; }
+      .integrations-section { padding: 4rem 0; }
+      .integration-card { padding: 2rem; }
+      .container { padding: 0 1rem; }
+    }
+  </style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K4QPV6KQ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="nav" id="mainNav">
+    <div class="container nav-container">
+      <a href="platform.html" class="logo">
+        <img src="./resources/RAGsense blk Horizontal.svg" alt="Ragsense">
+      </a>
+      <ul class="nav-links">
+        <li><a href="platform.html">Platform</a></li>
+        <li><a href="features.html" class="active">Features</a></li>
+        <li><a href="platform.html#security">Technology</a></li>
+        <li><a href="showcase.html">Showcase</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu">
+        <svg class="icon-menu" width="26" height="26" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+        <svg class="icon-close" width="26" height="26" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="features-hero">
+    <div class="container">
+      <span class="features-hero-badge">Platform Features</span>
+      <h1>Everything you expect<br><span class="text-gradient">+ any crazy custom feature</span></h1>
+      <p>Create AI agents to improve customer service, generate leads, increase staff efficiency and create a more consistent brand experience.</p>
+      <div class="hero-cta-row">
+        <a href="#" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/jmurin-zars/30min'});return false;" class="btn btn-primary">Request a Demo</a>
+        <a href="platform.html#how" class="btn btn-secondary">How it Works</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FEATURE 1: Knowledge Management (text left, screen right) ===== -->
+  <section class="feature-row">
+    <div class="container">
+      <div class="feature-split">
+        <div class="feature-text">
+          <span class="feature-tag">Data Sources</span>
+          <h2>Connect and index any knowledge source</h2>
+          <p>Ragsense integrates with all your existing tools and repositories — Drupal, SharePoint, Notion, Slack, Git and more. Automated indexing keeps your AI knowledge base always current, without manual intervention.</p>
+          <p>Structured and unstructured data, documents, sitemaps, APIs — everything flows into a single, always-up-to-date intelligence layer.</p>
+        </div>
+        <div class="feature-visual">
+          <div class="app-mockup">
+            <div class="app-mockup-chrome">
+              <span class="chrome-dot"></span><span class="chrome-dot"></span><span class="chrome-dot"></span>
+            </div>
+            <img src="./resources/fatures-ingex-management.png" alt="Knowledge Base Management" style="width:100%; display:block;">
+          </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FEATURE 2: Analytics (screen left, text right) ===== -->
+  <section class="feature-row alt-bg">
+    <div class="container">
+      <div class="feature-split reverse">
+        <div class="feature-text">
+          <span class="feature-tag">Monitoring</span>
+          <h2>Full visibility into AI usage and costs</h2>
+          <p>Track every AI interaction, monitor LLM spending in real time, and understand how your teams are leveraging knowledge AI. Enterprise-grade observability with detailed analytics dashboards built in from day one.</p>
+          <p>From daily question volumes to cost per query, Ragsense gives you the data you need to optimize and scale confidently.</p>
+        </div>
+        <div class="feature-visual">
+          <div style="position:relative;">
+            <div class="app-mockup">
+              <div class="app-mockup-chrome">
+                <span class="chrome-dot"></span><span class="chrome-dot"></span><span class="chrome-dot"></span>
+              </div>
+              <img src="./resources/fatures-monitoring.png" alt="AI Usage and Cost Monitoring" style="width:100%; display:block;">
+            </div>
+            <img src="./resources/chat-example.png" alt="Chat widget" style="position:absolute; bottom:0; left:18%; width:24%; transform:translateY(33%); filter:drop-shadow(0 20px 40px rgba(0,0,0,0.3)); z-index:2;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FEATURE 3: Transparency (text left, screen right) ===== -->
+  <section class="feature-row">
+    <div class="container">
+      <div class="feature-split">
+        <div class="feature-text">
+          <span class="feature-tag">Transparency</span>
+          <h2>Understand exactly how your AI answers</h2>
+          <p>Ragsense is the only AI platform that lets you visualize and inspect the exact data chunks sent to the LLM to generate each answer. No black boxes — full traceability at every step.</p>
+          <p>Essential for regulated industries, GDPR compliance, and any organization that cannot afford unexplained AI outputs.</p>
+        </div>
+        <div class="feature-visual">
+          <div class="app-mockup">
+            <div class="app-mockup-chrome">
+              <span class="chrome-dot"></span><span class="chrome-dot"></span><span class="chrome-dot"></span>
+            </div>
+            <img src="./resources/fatures-transparency.png" alt="AI Transparency and Chunk Inspector" style="width:100%; display:block;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FEATURE 4: Document Upload (screen left, text right) ===== -->
+  <section class="feature-row alt-bg">
+    <div class="container">
+      <div class="feature-split reverse">
+        <div class="feature-text">
+          <span class="feature-tag">Content Management</span>
+          <h2>Upload, manage and control your content</h2>
+          <p>Easily upload documents in any format, configure ingestion pipelines, and manage your entire knowledge base from a single interface. Role-based access control and audit logs included.</p>
+          <p>Trigger re-indexing on demand, schedule automated ingestion, or set up real-time sync — all without touching a line of code.</p>
+        </div>
+        <div class="feature-visual">
+          <div class="app-mockup">
+            <div class="app-mockup-chrome">
+              <span class="chrome-dot"></span><span class="chrome-dot"></span><span class="chrome-dot"></span>
+            </div>
+            <img src="./resources/fatures-document-management.png" alt="Document Management" style="width:100%; display:block;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FEATURE 5: AI Agents (text left, screen right) ===== -->
+  <section class="feature-row">
+    <div class="container">
+      <div class="feature-split">
+        <div class="feature-text">
+          <span class="feature-tag">AI Agents</span>
+          <h2>Deploy AI agents tailored to your brand</h2>
+          <p>Launch conversational AI agents designed for your specific use cases — customer service, internal helpdesk, sales enablement, or any custom workflow. No-code configuration, enterprise-grade reliability.</p>
+          <p>Every agent is fully customizable: choose your LLM, define the tone of voice, restrict knowledge scope, and deploy in minutes across web, mobile, or API.</p>
+        </div>
+        <div class="feature-visual">
+          <div class="app-mockup">
+            <div class="app-mockup-chrome">
+              <span class="chrome-dot"></span><span class="chrome-dot"></span><span class="chrome-dot"></span>
+            </div>
+            <img src="./resources/features-onboard.png" alt="Deploy AI Agents" style="width:100%; display:block;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FEATURE 6: Review Pipeline (screen left, text right) ===== -->
+  <section class="feature-row alt-bg">
+    <div class="container">
+      <div class="feature-split reverse">
+        <div class="feature-text">
+          <span class="feature-tag">Review Pipeline</span>
+          <h2>Powerful collaborative conversation reviews</h2>
+          <p>Get real time access to anonymized GDPR compliant conversation records with user comments. Escalate issues to expert reviewers or development team. Create test cases and empower machine learning by adding new conversation scenarios.</p>
+        </div>
+        <div class="feature-visual">
+          <div class="app-mockup">
+            <div class="app-mockup-chrome">
+              <span class="chrome-dot"></span><span class="chrome-dot"></span><span class="chrome-dot"></span>
+            </div>
+            <img src="./resources/fatures-review.png" alt="Collaborative Conversation Reviews" style="width:100%; display:block;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CUSTOM DEEP INTEGRATION ===== -->
+  <section class="integrations-section">
+    <div class="container">
+      <div class="integrations-header">
+        <h2>Custom deep integration</h2>
+        <p>To allow your business to leverage the power of your data in real time, we have developed a set of deep integrations that go beyond standard connectors.</p>
+      </div>
+      <div class="integration-cards">
+        <!-- Drupal card -->
+        <div class="integration-card">
+          <div class="integration-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M7 17L17 7M17 7H7M17 7v10"/>
+            </svg>
+          </div>
+          <img src="./resources/drupal-logo.svg" class="integration-icon" alt="Drupal">
+          <h3>Drupal plugin</h3>
+          <p>Automated content embedding and real-time synchronization directly from your Drupal CMS. New content is indexed as soon as it's published — no manual steps required.</p>
+        </div>
+        <!-- SharePoint card -->
+        <div class="integration-card">
+          <div class="integration-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M7 17L17 7M17 7H7M17 7v10"/>
+            </svg>
+          </div>
+          <img src="./resources/sharepoint-logo.svg" class="integration-icon" alt="SharePoint">
+          <h3>SharePoint</h3>
+          <p>Real-time indexing of your SharePoint Online libraries and document repositories. Permissions, metadata, and version history are fully respected during ingestion.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA SECTION ===== -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Ready to see it in action?</h2>
+      <p>Schedule a personalized demo and discover how Ragsense can transform the way your organization works with AI.</p>
+      <div class="cta-buttons">
+        <a href="#" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/jmurin-zars/30min'});return false;" class="btn btn-primary">Request a Demo</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div>
+          <img src="./resources/RAGsense white Horizontal.svg" alt="Ragsense" class="footer-logo">
+          <p style="color: rgba(255,255,255,0.6); margin: 0; font-size: 0.875rem;">Custom AI solutions for global corporate clients with the highest security requirements.</p>
+        </div>
+        <div>
+          <h4 style="color: var(--white); margin-bottom: 1rem;">Ragsense</h4>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0 2rem;">
+            <ul class="footer-links">
+              <li><a href="platform.html">Platform</a></li>
+              <li><a href="features.html">Features</a></li>
+              <li><a href="platform.html#security">Technology</a></li>
+            </ul>
+            <ul class="footer-links">
+              <li><a href="showcase.html">Showcase</a></li>
+              <li><a href="about.html">About</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <h4 style="color: var(--white); margin-bottom: 1rem;">Offices</h4>
+          <ul class="footer-links">
+            <li><a href="contact.html">Paris, France</a></li>
+            <li><a href="contact.html">Brussels, Belgium</a></li>
+            <li><a href="contact.html">Bratislava, Slovakia</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p style="color: rgba(255,255,255,0.6); font-size: 0.75rem;">© 2025 Ragsense. A Proffice &amp; Resulta Joint Venture.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Calendly -->
+  <link href="./resources/widget.css" rel="stylesheet">
+  <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+
+  <script>
+    // Mobile nav toggle
+    const navToggle = document.getElementById('navToggle');
+    const mainNav = document.getElementById('mainNav');
+    navToggle.addEventListener('click', () => { mainNav.classList.toggle('nav-open'); });
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => { mainNav.classList.remove('nav-open'); });
+    });
+
+    // Scroll effect for navbar
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('.nav');
+      if (window.scrollY > 50) {
+        nav.style.background = 'rgba(255, 255, 255, 0.98)';
+        nav.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.1)';
+      } else {
+        nav.style.background = 'rgba(255, 255, 255, 0.95)';
+        nav.style.boxShadow = 'none';
+      }
+    });
+
+    // Scroll animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.feature-split, .integration-card').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(24px)';
+      el.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
+      observer.observe(el);
+    });
+
+    // Calendly badge
+    window.addEventListener('load', function() {
+      if (window.Calendly) {
+        Calendly.initBadgeWidget({
+          url: 'https://calendly.com/jmurin-zars/30min',
+   

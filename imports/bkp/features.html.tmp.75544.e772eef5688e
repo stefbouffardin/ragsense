@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Features – Ragsense</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com/">
+  <link href="./RAGSense – Universal AI Knowledge Platform_files/css2" rel="stylesheet">
+  <style>
+    /* ===== Custom Fonts ===== */
+    @font-face {
+      font-family: 'ProfficeRegular';
+      src: url('./RAGSense – Universal AI Knowledge Platform_files/ProfficeRegular.woff2') format('woff2');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    /* ===== CSS Variables ===== */
+    :root {
+      --brand-dark: #250379;
+      --brand-blue: #1C5AF0;
+      --brand-cyan: #1CF0F0;
+      --brand-purple: #8649DA;
+      --brand-mint: #16EAAA;
+      --brand-50: #f3e8ff;
+      --brand-100: #e9d5ff;
+      --brand-200: #d8b4fe;
+      --brand-300: #c084fc;
+      --brand-400: #a855f7;
+      --brand-500: #8649DA;
+      --brand-600: #7c3aed;
+      --brand-700: #6d28d9;
+      --brand-900: #250379;
+      --accent-400: #2dd4bf;
+      --accent-500: #16EAAA;
+      --accent-600: #0d9488;
+      --gray-50: #f9fafb;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --gray-300: #d1d5db;
+      --gray-500: #6b7280;
+      --gray-600: #4b5563;
+      --gray-700: #374151;
+      --gray-800: #1f2937;
+      --gray-900: #111827;
+      --white: #ffffff;
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+      --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+      --gradient-primary: linear-gradient(135deg, var(--brand-purple) 0%, var(--brand-cyan) 100%);
+      --gradient-dark: linear-gradient(135deg, var(--brand-dark) 0%, var(--brand-purple) 100%);
+      --gradient-bg: linear-gradient(180deg, #ffffff 0%, var(--gray-50) 50%, #ffffff 100%);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; line-height: 1.7; color: var(--gray-900); background: var(--white); overflow-x: hidden; }
+
+    h1, h2, h3, h4, h5, h6 { font-weight: 700; line-height: 1.2; color: var(--gray-900); margin-bottom: 1rem; }
+    h1 { font-family: 'ProfficeRegular', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: normal; letter-spacing: -0.02em; }
+    h2 { font-family: 'ProfficeRegular', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: normal; letter-spacing: -0.01em; }
+    h3 { font-size: 1.5rem; font-weight: 600; }
+    p { font-size: 1.125rem; color: var(--gray-700); margin-bottom: 1.5rem; }
+
+    .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+    .btn { display: inline-flex; align-items: center; justify-content: center; padding: 1rem 2rem; border-radius: 0.75rem; font-weight: 600; font-size: 1rem; text-decoration: none; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); border: none; cursor: pointer; }
+    .btn-primary { background: var(--gradient-primary); color: var(--white); box-shadow: var(--shadow-lg); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: var(--shadow-xl); }
+    .btn-secondary { background: rgba(255,255,255,0.15); color: var(--white); border: 2px solid rgba(255,255,255,0.3); }
+    .btn-secondary:hover { background: rgba(255,255,255,0.25); transform: translateY(-2px); }
+
+    /* ===== Navigation ===== */
+    .nav { position: fixed; top: 0; left: 0; right: 0; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--gray-200); z-index: 1000; padding: 1rem 0; transition: all 0.3s ease; }
+    .nav-container { display: flex; align-items: center; justify-content: space-between; }
+    .logo { display: flex; align-items: center; text-decoration: none; }
+    .logo img { height: 32px; width: auto; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--gray-700); text-decoration: none; font-weight: 500; transition: color 0.3s ease; }
+    .nav-links a:hover { color: var(--brand-purple); }
+    .nav-links a.active { color: var(--brand-purple); font-weight: 600; }
+    .nav-toggle { display: none; background: none; border: none; cursor: pointer; color: var(--gray-900); padding: 0.25rem; line-height: 0; z-index: 1001; }
+    .nav-toggle .icon-close { display: none; }
+    .nav-open .nav-toggle .icon-menu { display: none; }
+    .nav-open .nav-toggle .icon-close { display: block; }
+
+    /* ===== Features Hero ===== */
+    .features-hero {
+      background: linear-gradient(135deg, #0a0118 0%, #1a0450 50%, #250379 100%);
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 9rem 0 6rem;
+    }
+    .features-hero::before {
+      content: '';
+      position: absolute;
+      top: -30%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 900px;
+      height: 900px;
+      background: radial-gradient(circle, rgba(134,73,218,0.25) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .features-hero::after {
+      content: '';
+      position: absolute;
+      bottom: -10%;
+      right: -10%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(28,240,240,0.1) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .features-hero .container { position: relative; z-index: 2; text-align: center; }
+    .features-hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1.25rem;
+      background: rgba(134,73,218,0.2);
+      border: 1px solid rgba(134,73,218,0.4);
+      border-radius: 9999px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--brand-cyan);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+    .features-hero h1 {
+      color: var(--white);
+      -webkit-text-fill-color: white;
+      background: none;
+      font-size: clamp(2.25rem, 4.5vw, 3.645rem);
+      margin-bottom: 1.5rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .features-hero p {
+      color: rgba(255,255,255,0.65);
+      font-size: 1.2rem;
+      max-width: 620px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.6;
+    }
+    .hero-cta-row {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ===== Feature Rows ===== */
+    .feature-row {
+      padding: 6rem 0;
+      background: var(--white);
+    }
+    .feature-row.alt-bg {
+      background: var(--gray-50);
+    }
+    .feature-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .feature-split.reverse {
+      direction: rtl;
+    }
+    .feature-split.reverse > * {
+      direction: ltr;
+    }
+    .feature-tag {
+      display: inline-block;
+      color: var(--brand-purple);
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+    }
+    .feature-text h2 {
+      margin-bottom: 1.25rem;
+      color: var(--gray-900);
+    }
+    .feature-text p {
+      color: var(--gray-600);
+      line-height: 1.75;
+      margin-bottom: 1.25rem;
+    }
+    .feature-text p:last-of-type { margin-bottom: 0; }
+
+    /* ===== App Mockup ===== */
+    .app-mockup {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.18), 0 0 0 1px rgba(0,0,0,0.06);
+      background: #e8eaed;
+    }
+    .app-mockup-chrome {
+      background: #e8eaed;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .chrome-dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+    }
+    .chrome-dot:nth-child(1) { background: #fc615d; }
+    .chrome-dot:nth-child(2) { background: #fdbc40; }
+    .chrome-dot:nth-child(3) { background: #34c749; }
+    .app-mockup svg { display: block; width: 100%; height: auto; }
+
+    /* ===== Integrations Section ===== */
+    .integrations-section {
+      background: var(--gray-100);
+      padding: 7rem 0;
+    }
+    .integrations-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+    .integrations-header h2 { margin-bottom: 1rem; }
+    .integrations-header p { color: var(--gray-500); max-width: 600px; margin: 0 auto; }
+    .integration-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    .integration-card {
+      background: var(--white);
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 20px;
+      padding: 3rem 3rem 2.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .integration-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-xl);
+    }
+    .integration-icon {
+      width: 64px;
+      height: 64px;
+      margin-bottom: 1.5rem;
+    }
+    .integration-card h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 0.75rem;
+    }
+    .integration-card p {
+      color: rgba(0,0,0,0.5);
+      font-size: 1rem;
+      margin: 0;
+      line-height: 1.6;
+    }
+    .integration-arrow {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 42px;
+      height: 42px;
+      background: var(--gray-100);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .integration-arrow svg { width: 18px; height: 18px; color: var(--gray-500); }
+
+    /* ===== CTA Section ===== */
+    .cta-section {
+      background: var(--brand-dark);
+      padding: 6rem 0;
+      text-align: center;
+    }
+    .cta-section h2 {
+      font-family: 'ProfficeRegular', 'Inter', sans-serif;
+      font-weight: normal;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+    .cta-section p { color: rgba(255,255,255,0.7); max-width: 520px; margin: 0 auto 2.5rem; }
+    .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    /* ===== Footer ===== */
+    .footer { background: #000000; color: var(--white); padding: 5rem 0 3rem; }
+    .footer-logo { height: 32px; width: auto; margin-bottom: 1.5rem; }
+    .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 3rem; margin-bottom: 4rem; }
+    .footer h4 { color: var(--white); font-size: 1rem; font-weight: 600; margin-bottom: 1.5rem; }
+    .footer-links { list-style: none; }
+    .footer-links li { margin-bottom: 0.75rem; }
+    .footer-links a { color: rgba(255,255,255,0.6); text-decoration: none; transition: all 0.2s ease; }
+    .footer-links a:hover { color: var(--white); padding-left: 4px; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; text-align: center; }
+
+    /* ===== Responsive ===== */
+    @media (min-width: 1024px) {
+      .footer-content { grid-template-columns: 2fr 1fr 1fr; gap: 4rem; }
+    }
+    @media (max-width: 900px) {
+      .feature-split, .feature-split.reverse { grid-template-columns: 1fr; gap: 3rem; direction: ltr; }
+      .integration-cards { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      .nav-toggle { display: block; }
+      .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: rgba(255,255,255,0.98); padding: 0.5rem 2rem 1.5rem; gap: 0; border-top: 1px solid var(--gray-200); box-shadow: 0 4px 10px rgba(0,0,0,0.08); }
+      .nav-links li { padding: 0.85rem 0; border-bottom: 1px solid var(--gray-100); }
+      .nav-links li:last-child { border-bottom: none; }
+      .nav-open .nav-links { display: flex; }
+      .features-hero { min-height: auto; padding: 7rem 0 4rem; }
+      .feature-row { padding: 4rem 0; }
+      .integrations-section { padding: 4rem 0; }
+      .integration-card { padding: 2rem; }
+      .container { padding: 0 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="nav" id="mainNav">
+    <div class="container nav-container">
+      <a href="platform.html" class="logo">
+        <img src="./RAGSense – Universal AI Knowledge Platform_files/RAGsense blk Horizontal.svg" alt="Ragsense">
+      </a>
+      <ul class="nav-links">
+        <li><a href="platform.html">Platform</a></li>
+        <li><a href="features.html" class="active">Features</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="platform.html#how">How it Works</a></li>
+        <li><a href="platform.html#security">Technology</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu">
+        <svg class="icon-menu" width="26" height="26" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+        <svg class="icon-close" width="26" height="26" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="features-hero">
+    <div class="container">
+      <span class="features-hero-badge">Platform Features</span>
+      <h1>Everything you expect<br><span class="text-gradient">+ any crazy custom feature</span></h1>
+      <p>Create AI agents to improve customer service, generate leads, increase staff efficiency and create a more consistent brand experience.</p>
+      <div class="hero-cta-row">
+        <a href="contact.html" class="btn btn-primary">Request a Demo</a>
+        <a href="platform.html#how" class="btn btn-secondary">How it Works</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FEATURE 1: Knowledge Management (text left, screen right) ===== -->
+  <section class="feature-row">
+    <div class="container">
+      <div class="feature-split">
+        <div class="feature-text">
+          <span class="feature-tag">Data Sources</span>
+          <h2>Connect and index any knowledge source</h2>
+          <p>Ragsense integrates with all your existing tools and repositories — Drupal, SharePoint, Notion, Slack, Git and more. Automated indexing keeps your AI knowledge base always current, without manual intervention.</p>
+          <p>Structured and unstructured data, documents, sitemaps, APIs — everything flows into a single, always-up-to-date intelligence layer.</p>
+        </div>
+        <div class="feature-visual">
+          <div class="app-mockup">
+            <div class="app-mockup-chrome">
+              <span class="chrome-dot"></span><span class="chrome-dot"></span><span class="chrome-dot"></span>
+            </div>
+            <!-- Documents Manager SVG -->
+            <svg viewBox="0 0 700 440" xmlns="http://www.w3.org/2000/svg" font-family="Inter, -apple-system, sans-serif">
+              <!-- Sidebar -->
+              <rect width="200" height="440" fill="#0D0E1A"/>
+              <!-- Logo -->
+              <circle cx="26" cy="30" r="11" fill="#16EAAA"/>
+              <circle cx="26" cy="30" r="6" fill="#0D0E1A" opacity="0.6"/>
+              <text x="44" y="35" fill="white" font-size="13" font-weight="700" letter-spacing="-0.3">OpenSync</text>
+              <!-- Divider -->
+              <line x1="16" y1="56" x2="184" y2="56" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+              <!-- Nav items -->
+              <rect x="12" y="66" width="176" height="28" rx="6" fill="rgba(255,255,255,0.05)"/>
+              <text x="32" y="83" fill="rgba(255,255,255,0.55)" font-size="11.5">⌂  Dashboard</text>
+              <text x="32" y="114" fill="rgba(255,255,255,0.55)" font-size="11.5">💬  Conversation log</text>
+              <text x="32" y="142" fill="rgba(255,255,255,0.55)" font-size="11.5">⚙  Application settings</text>
+              <!-- Data sources expanded -->
+              <text x="32" y="170" fill="rgba(255,255,255,0.9)" font-size="11.5" font-weight="600">◈  Data sources  ˄</text>
+              <text x="50" y="195" fill="rgba(255,255,255,0.45)" font-size="11">📄  My documents</text>
+              <text x="50" y="215" fill="rgba(255,255,255,0.45)" font-size="11">🌐  Sitemap</text>
+              <text x="50" y="235" fill="rgba(255,255,255,0.45)" font-size="11">{ }  Json</text>
+              <text x="50" y="255" fill="rgba(255,255,255,0.45)" font-size="11">🔷  Drupal</text>
+              <line x1="16" y1="270" x2="184" y2="270" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+              <text x="32" y="293" fill="rgba(255,255,255,0.55)" font-size="11.5">🧪  Tests</text>
+              <text x="32" y="318" fill="rgba(255,255,255,0.55)" font-size="11.5">👤  Users</text>
+              <!-- Content area -->
+              <rect x="200" y="0" width="500" height="440" fill="white"/>
+              <!-- Content header -->
+              <rect x="200" y="0" width="500" height="46" fill="#fafafa"/>
+              <line x1="200" y1="46" x2="700" y2="46" stroke="#e5e7eb" stroke-width="1"/>
+              <text x="220" y="28" fill="#111827" font-size="14" font-weight="600">📁  Documents</text>
+              <!-- Search -->
+              <rect x="220" y="58" width="458" height="30" rx="6" fill="#f3f4f6"/>
+              <text x="236" y="77" fill="#9ca3af" font-size="12">🔍  Search</text>
+              <!-- Table header -->
+              <rect x="200" y="98" width="500" height="26" fill="#f9fafb"/>
+              <line x1="200" y1="124" x2="700" y2="124" stroke="#e5e7eb" stroke-width="1"/>
+              <rect x="216" y="108" width="14" height="14" rx="3" fill="none" stroke="#d1d5db" stroke-width="1.5"/>
+              <text x="240" y="116" fill="#6b7280" font-size="11" font-weight="600">Id</text>
+              <text x="295" y="116" fill="#6b7280" font-size="11" font-weight="600">Name</text>
+              <!-- Rows -->
+              <line x1="200" y1="156" x2="700" y2="156" stroke="#f3f4f6" stroke-width="1"/>
+              <rect x="216" y="133" width="14" height="14" rx="3" fill="none" stroke="#d1d5db" stroke-width="1.5"/>
+              <text x="240" y="145" fill="#374151" font-size="11.5">1186</text>
+              <text x="295" y="145" fill="#3b82f6" font-size="11.5" text-decoration="underline">test2</text>
+              <line x1="200" y1="187" x2="700" y2="187" stroke="#f3f4f6" stroke-width="1"/>
+              <rect x="216" y="163" width="14" height="14" rx="3" fill="none" stroke="#d1d5db" stroke-width="1.5"/>
+              <text x="240" y="176" fill="#374151" font-size="11.5">1181</text>
+              <text x="295" y="176" fill="#3b82f6" font-size="11.5" text-decoration="underline">FAQ-questions-20240620</text>
+              <line x1="200" y1="218" x2="700" y2="218" stroke="#f3f4f6" stroke-width="1"/>
+              <rect x="216" y="194" width="14" height="14" rx="3" fill="none" stroke="#d1d5db" stroke-width="1.5"/>
+              <text x="240" y="207" fill="#374151" font-size="11.5">1179</text>
+              <text x="295" y="207" fill="#3b82f6" font-size="11.5" text-decoration="underline">2023-09_Battlecard_Verifone</text>
+              <line x1="200" y1="249" x2="700" y2="249" stroke="#f3f4f6" stroke-width="1"/>
+              <rect x="216" y="225" width="14" height="14" rx="3" fill="none" stroke="#d1d5db" stroke-width="1.5"/>
+              <text x="240" y="238" fill="#374151" font-size="11.5">1178</text>
+              <text x="295" y="238" fill="#3b82f6" font-size="11.5" text-decoration="underline">test</text>
+              <line x1="200" y1="280" x2="700" y2="280" stroke="#f3f4f6" stroke-width="1"/>
+              <rect x="216" y="256" width="14" height="14" rx="3" fill="none" stroke="#d1d5db" stroke-width="1.5"/>
+              <text x="240" y="269" fill="#374151" font-size="11.5">1177</text>
+              <text x="295" y="269" fill="#3b82f6" font-size="11.5" text-decoration="underline">external_bic_money_german</text>
+              <line x1="200" y1="311" x2="700" y2="311" stroke="#f3f4f6" stroke-width="1"/>
+              <rect x="216" y="287" width="14" height="14" rx="3" fill="none" stroke="#d1d5db" stroke-width="1.5"/>
+              <text x="240" y="300" fill="#374151" font-size="11.5">1176</text>
+              <text x="295" y="300" fill="#3b82f6" font-size="11.5" text-decoration="underline">Ingenico_Driver_Installer_User_Guide</text>
+              <line x1="200" y1="342" x2="700" y2="342" stroke="#f3f4f6" stroke-width="1"/>
+              <rect x="216" y="318" width="14" height="14" rx="3" fill="none" stroke="#d1d5db" stroke-width="1.5"/>
+              <text x="240" y="331" fill="#374151" font-size="11.5">1175</text>
+              <text x="295" y="331" fill="#9ca3af" font-size="11.5">dummy</text>
+              <!-- Footer -->
+              <rect x="200" y="400" width="500" height="40" fill="#fafafa"/>
+              <line x1="200" y1="400" x2="700" y2="400" stroke="#e5e7eb" stroke-width="1"/>
+              <text x="220" y="424" fill="#6b7280" font-size="11">Bulk select</text>
+              <text x="500" y="424" fill="#6b7280" font-size="11">1–7 of 1186</text>
+              <text x="640" y="424" fill="#6b7280" font-size="14">‹  ›</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FEATURE 2: Analytics (screen left, text right) ===== -->
+  <section class="feature-row alt-bg">
+    <div class="container">
+      <div class="feature-split reverse">
+        <div class="feature-text">
+          <span class="feature-tag">Monitoring</span>
+          <h2>Full visibility into AI usage and costs</h2>
+          <p>Track every AI interaction, monitor LLM spending in real time, and understand how your teams are leveraging knowledge AI. Enterprise-grade observability with detailed analytics dashboards built in from day one.</p>
+          <p>From daily question volumes to cost per query, Ragsense gives you the data you need to optimize and scale confidently.</p>
+        </div>
+        <div class="feature-visual">
+          <div class="app-mockup">
+            <div class="app-mockup-chrome">
+              <span class="chrome-dot"></span><span class="chrome-dot"></span><span class="chrome-dot"></span>
+            </div>
+            <!-- Analytics Dashboard SVG -->
+            <svg viewBox="0 0 700 400" xmlns="http://www.w3.org/2000/svg" font-family="Inter, -apple-system, sans-serif">
+              <rect width="700" height="400" fill="white"/>
+              <!-- Top bar -->
+              <rect width="700" height="40" fill="#1a1a2e"/>
+              <circle cx="16" cy="20" r="6" fill="#16EAAA"/>
+              <circle cx="16" cy="20" r="3" fill="#1a1a2e" opacity="0.5"/>
+              <text x="30" y="24" fill="white" font-size="12" font-weight="600">OpenSync</text>
+              <!-- Status pill -->
+              <rect x="570" y="11" width="118" height="18" rx="9" fill="rgba(22,234,170,0.15)" stroke="#16EAAA" stroke-width="1"/>
+              <circle cx="582" cy="20" r="4" fill="#16EAAA"/>
+              <text x="591" y="24" fill="#16EAAA" font-size="10" font-weight="600">AI enabled  ▾</text>
+              <!-- Settings icon -->
+              <circle cx="544" cy="20" r="12" fill="rgba(255,255,255,0.1)"/>
+              <text x="538" y="25" fill="white" font-size="13">⚙</text>
+              <!-- Stat cards row -->
+              <!-- Card 1: Spending -->
+              <rect x="16" y="56" width="156" height="90" rx="8" fill="white" stroke="#e5e7eb" stroke-width="1"/>
+              <rect x="16" y="56" width="156" height="90" rx="8" fill="none" stroke="#e5e7eb" stroke-width="1"/>
+              <circle cx="36" cy="76" r="10" fill="#e8f4fd"/>
+              <text x="30" y="80" font-size="12">💰</text>
+              <text x="54" y="76" fill="#374151" font-size="10" font-weight="600">Spending</text>
+              <text x="36" y="102" fill="#374151" font-size="10" fill-opacity="0.5">Budget spent in selected range</text>
+              <text x="36" y="130" fill="#111827" font-size="14" font-weight="700">US$0.11</text>
+              <text x="100" y="130" fill="#6b7280" font-size="11">US$0.01</text>
+              <!-- Card 2: Questions asked -->
+              <rect x="182" y="56" width="156" height="90" rx="8" fill="white" stroke="#e5e7eb" stroke-width="1"/>
+              <circle cx="202" cy="76" r="10" fill="#fef3c7"/>
+              <text x="196" y="80" font-size="12">❓</text>
+              <text x="220" y="76" fill="#374151" font-size="10" font-weight="600">Questions asked</text>
+              <text x="202" y="102" fill="#374151" font-size="10" fill-opacity="0.5">Number of questions in range</text>
+              <text x="202" y="130" fill="#111827" font-size="20" font-weight="700">14</text>
+              <!-- Card 3: Last ingest -->
+              <rect x="348" y="56" width="166" height="90" rx="8" fill="white" stroke="#e5e7eb" stroke-width="1"/>
+              <circle cx="368" cy="76" r="10" fill="#e8f4fd"/>
+              <text x="362" y="80" font-size="12">📤</text>
+              <text x="386" y="76" fill="#374151" font-size="10" font-weight="600">Last ingest</text>
+              <text x="368" y="102" fill="#374151" font-size="10" fill-opacity="0.5">Date of last successful ingest</text>
+              <text x="368" y="124" fill="#111827" font-size="11" font-weight="600">26/08/2024, 08:57</text>
+              <!-- Card 4: Collection name -->
+              <rect x="524" y="56" width="162" height="90" rx="8" fill="white" stroke="#e5e7eb" stroke-width="1"/>
+              <circle cx="544" cy="76" r="10" fill="#fce7f3"/>
+              <text x="538" y="80" font-size="12">🗂</text>
+              <text x="562" y="76" fill="#374151" font-size="10" font-weight="600">Collection name</text>
+              <text x="544" y="102" fill="#374151" font-size="10" fill-opacity="0.5">AI knowledge collection</text>
+              <text x="544" y="124" fill="#111827" font-size="11" font-weight="600">ingenico-ai-18</text>
+              <!-- Refresh icons top right each card -->
+              <text x="158" y="64" fill="#9ca3af" font-size="10">↻</text>
+              <text x="324" y="64" fill="#9ca3af" font-size="10">↻</text>
+              <text x="496" y="64" fill="#9ca3af" font-size="10">↻</text>
+              <text x="672" y="64" fill="#9ca3af" font-size="10">↻</text>
+              <!-- Chart section -->
+              <rect x="16" y="162" width="484" height="220" rx="8" fill="white" stroke="#e5e7eb" stroke-width="1"/>
+              <text x="158" y="174" fill="#9ca3af" font-size="10">↻</text>
+              <!-- Y axis labels -->
+              <text x="20" y="196" fill="#9ca3af" font-size="9">4</text>
+              <text x="20" y="240" fill="#9ca3af" font-size="9">3</text>
+              <text x="20" y="284" fill="#9ca3af" font-size="9">2</text>
+              <text x="20" y="328" fill="#9ca3af" font-size="9">1</text>
+              <text x="20" y="360" fill="#9ca3af" font-size="9">0</text>
+              <!-- Chart grid lines -->
+              <line x1="40" y1="194" x2="490" y2="194" stroke="#f3f4f6" stroke-width="1"/>
+              <line x1="40" y1="238" x2="490" y2="238" stroke="#f3f4f6" stroke-width="1"/>
+              <line x1="40" y1="282" x2="490" y2="282" stroke="#f3f4f6" stroke-width="1"/>
+              <line x1="40" y1="326" x2="490" y2="326" stroke="#f3f4f6" stroke-width="1"/>
+              <line x1="40" y1="360" x2="490" y2="360" stroke="#f3f4f6" stroke-width="1"/>
+              <!-- Teal line chart -->
+              <polyline points="40,358 70,358 100,358 130,210 145,200 160,358 190,358 220,358 250,358 280,358 310,358 340,358 370,358 400,358 430,358 460,358 490,358" fill="none" stroke="#16EAAA" stroke-width="2.5" stroke-linejoin="round"/>
+              <!-- X labels -->
+              <text x="40" y="375" fill="#9ca3af" font-size="8">14 Oct</text>
+              <text x="96" y="375" fill="#9ca3af" font-size="8">17 Oct</text>
+              <text x="145" y="375" fill="#9ca3af" font-size="8">18 Oct</text>
+              <text x="200" y="375" fill="#9ca3af" font-size="8">23 Oct</text>
+              <text x="440" y="375" fill="#9ca3af" font-size="8">Dates</text>
+              <!-- Right panel -->
+              <rect x="516" y="162" width="168" height="220" rx="8" fill="white" stroke="#e5e7eb" stroke-width="1"/>
+              <text x="530" y="182" fill="#374151" font-size="11" font-weight="600">Top queries</text>
+              <line x1="516" y1="190" x2="684" y2="190" stroke="#f3f4f6" stroke-width="1"/>
+              <rect x="526" y="198" width="140" height="12" rx="3" fill="#f3f4f6"/>
+              <rect x="526" y="218" width="100" height="12" rx="3" fill="#f3f4f6"/>
+              <rect x="526" y="238" width="120" height="12" rx="3" fill="#f3f4f6"/>
+              <rect x="526" y="258" width="80" height="12" rx="3" fill="#f3f4f6"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FEATURE 3: Transparency (text left, screen right) ===== -->
+  <section class="feature-row">
+    <div class="container">
+      <div class="feature-split">
+        <div class="feature-text">
+          <span class="feature-tag">Transparency</span>
+          <h2>Understand exactly how your AI answers</h2>
+          <p>Ragsense is the only AI platform that lets you visualize and inspect the exact data chunks sent to the LLM to generate each answer. No black boxes — full traceability at every step.</p>
+          <p>Essential for regulated industries, GDPR compliance, and any organization that cannot afford unexplained AI outputs.</p>
+        </div>
+        <div class="feature-visual">
+          <div class="app-mockup">
+            <div class="app-mockup-chrome">
+              <span class="chrome-dot"></span><span class="chrome-dot"></span><span class="chrome-dot"></span>
+            </div>
+            <!-- Conversation log / chunk inspector SVG -->
+            <svg viewBox="0 0 700 440" xmlns="http://www.w3.org/2000/svg" font-family="Inter, -apple-system, sans-serif">
+              <!-- Sidebar same as doc manager -->
+              <rect width="200" height="440" fill="#0D0E1A"/>
+              <circle cx="26" cy="30" r="11" fill="#16EAAA"/>
+              <circle cx="26" cy="30" r="6" fill="#0D0E1A" opacity="0.6"/>
+              <text x="44" y="35" fill="white" font-size="13" font-weight="700" letter-spacing="-0.3">OpenSync</text>
+              <line x1="16" y1="56" x2="184" y2="56" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+              <text x="32" y="83" fill="rgba(255,255,255,0.55)" font-size="11.5">⌂  Dashboard</text>
+              <rect x="12" y="92" width="176" height="28" rx="6" fill="rgba(255,255,255,0.08)"/>
+              <text x="32" y="111" fill="rgba(255,255,255,0.9)" font-size="11.5" font-weight="600">💬  Conversation log</text>
+              <text x="32" y="142" fill="rgba(255,255,255,0.55)" font-size="11.5">⚙  Application settings</text>
+              <text x="32" y="170" fill="rgba(255,255,255,0.55)" font-size="11.5">◈  Data sources</text>
+              <text x="32" y="198" fill="rgba(255,255,255,0.55)" font-size="11.5">🧪  Tests</text>
+              <text x="32" y="226" fill="rgba(255,255,255,0.55)" font-size="11.5">👤  Users</text>
+              <!-- Content -->
+              <rect x="200" y="0" width="500" height="440" fill="white"/>
+              <rect x="200" y="0" width="500" height="46" fill="#fafafa"/>
+              <line x1="200" y1="46" x2="700" y2="46" stroke="#e5e7eb" stroke-width="1"/>
+              <text x="220" y="28" fill="#111827" font-size="14" font-weight="600">💬  Conversation log</text>
+              <!-- Conversation entry -->
+              <rect x="216" y="58" width="466" height="70" rx="8" fill="#f9fafb" stroke="#e5e7eb" stroke-width="1"/>
+              <text x="236" y="76" fill="#111827" font-size="12" font-weight="600">Q: What are the installation requirements for Verifone?</text>
+              <text x="236" y="94" fill="#6b7280" font-size="11">A: The Verifone driver requires Windows 10 or later, with USB 2.0 port and...</text>
+              <text x="236" y="116" fill="#9ca3af" font-size="10">18 Oct 2024, 14:32  ·  3 chunks used  ·  US$0.003</text>
+              <!-- Chunks panel -->
+              <rect x="216" y="144" width="466" height="26" rx="6" fill="#f3f4f6"/>
+              <text x="232" y="161" fill="#374151" font-size="11" font-weight="600">🔍  Source chunks (3)</text>
+              <!-- Chunk 1 -->
+              <rect x="216" y="178" width="466" height="58" rx="8" fill="white" stroke="#e5e7eb" stroke-width="1"/>
+              <rect x="216" y="178" width="4" height="58" rx="2" fill="#8649DA"/>
+              <text x="232" y="196" fill="#374151" font-size="11" font-weight="600">2023-09_Battlecard_Verifone.pdf  ·  page 4</text>
+              <text x="232" y="213" fill="#6b7280" font-size="10.5">"Installation requires Windows 10 64-bit minimum. Connect the device via USB 2.0 or higher</text>
+              <text x="232" y="228" fill="#6b7280" font-size="10.5">and install the driver package from the provided media..."</text>
+              <!-- Chunk 2 -->
+              <rect x="216" y="244" width="466" height="58" rx="8" fill="white" stroke="#e5e7eb" stroke-width="1"/>
+              <rect x="216" y="244" width="4" height="58" rx="2" fill="#16EAAA"/>
+              <text x="232" y="262" fill="#374151" font-size="11" font-weight="600">FAQ-questions-20240620.docx  ·  page 1</text>
+              <text x="232" y="279" fill="#6b7280" font-size="10.5">"Q: Which OS versions are supported? A: Windows 10 and Windows 11 are fully</text>
+              <text x="232" y="294" fill="#6b7280" font-size="10.5">supported. Legacy Windows versions require a compatibility patch..."</text>
+              <!-- Chunk 3 -->
+              <rect x="216" y="310" width="466" height="58" rx="8" fill="white" stroke="#e5e7eb" stroke-width="1"/>
+              <rect x="216" y="310" width="4" height="58" rx="2" fill="#1C5AF0"/>
+              <text x="232" y="328" fill="#374151" font-size="11" font-weight="600">Ingenico_Driver_Installer_User_Guide.pdf  ·  page 12</text>
+              <text x="232" y="345" fill="#6b7280" font-size="10.5">"Ensure your system meets minimum requirements before proceeding.</text>
+              <text x="232" y="360" fill="#6b7280" font-size="10.5">USB controller driver version 3.0+ recommended for optimal performance..."</text>
+              <!-- Relevance score -->
+              <text x="640" y="196" fill="#8649DA" font-size="10" font-weight="600">94%</text>
+              <text x="640" y="262" fill="#16EAAA" font-size="10" font-weight="600">88%</text>
+              <text x="640" y="328" fill="#1C5AF0" font-size="10" font-weight="600">81%</text>
+              <!-- Prompt preview -->
+              <rect x="216" y="380" width="466" height="44" rx="8" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1"/>
+              <text x="232" y="398" fill="#374151" font-size="10.5" font-weight="600">📨  Prompt sent to LLM  (1 024 tokens)</text>
+              <text x="232" y="416" fill="#6b7280" font-size="10">[System prompt] + [3 chunks] + [User question]  →  gpt-4o-mini</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FEATURE 4: Document Upload (screen left, text right) ===== -->
+  <section class="feature-row alt-bg">
+    <div class="container">
+      <div class="feature-split reverse">
+        <div class="feature-text">
+          <span class="feature-tag">Content Management</span>
+          <h2>Upload, manage and control your content</h2>
+          <p>Easily upload documents in any format, configure ingestion pipelines, and manage your entire knowledge base from a single interface. Role-based access control and audit logs included.</p>
+          <p>Trigger re-indexing on demand, schedule automated ingestion, or set up real-time sync — all without touching a line of code.</p>
+        </div>
+        <div class="feature-visual">
+          <div class="app-mockup">
+            <div class="app-mockup-chrome">
+              <span class="chrome-dot"></span><span class="chrome-dot"></span><span class="chrome-dot"></span>
+            </div>
+            <!-- Upload Manager SVG -->
+            <svg viewBox="0 0 700 420" xmlns="http://www.w3.org/2000/svg" font-family="Inter, -apple-system, sans-serif">
+              <rect width="700" height="420" fill="white"/>
+              <!-- Top status bar -->
+              <rect width="700" height="44" fill="#f9fafb"/>
+              <line x1="0" y1="44" x2="700" y2="44" stroke="#e5e7eb" stroke-width="1"/>
+              <!-- Status pill -->
+              <rect x="16" y="13" width="134" height="20" rx="10" fill="rgba(22,234,170,0.1)" stroke="#16EAAA" stroke-width="1"/>
+              <circle cx="29" cy="23" r="5" fill="#16EAAA"/>
+              <text x="39" y="27" fill="#374151" font-size="10.5" font-weight="600">Status: AI enabled  ▾</text>
+              <!-- Settings gear -->
+              <circle cx="670" cy="22" r="16" fill="#111827"/>
+              <text x="663" y="27" fill="white" font-size="14">⚙</text>
+              <!-- Upload button -->
+              <rect x="16" y="58" width="148" height="34" rx="8" fill="#16EAAA"/>
+              <text x="32" y="80" fill="white" font-size="12" font-weight="700">⬆  Upload Document</text>
+              <!-- Table header -->
+              <rect x="0" y="108" width="700" height="28" fill="#f9fafb"/>
+              <line x1="0" y1="136" x2="700" y2="136" stroke="#e5e7eb" stroke-width="1"/>
+              <text x="16" y="126" fill="#6b7280" font-size="11" font-weight="600">Name</text>
+              <text x="420" y="126" fill="#6b7280" font-size="11" font-weight="600">Size</text>
+              <text x="520" y="126" fill="#6b7280" font-size="11" font-weight="600">Status</text>
+              <text x="632" y="126" fill="#6b7280" font-size="11" font-weight="600">Actions</text>
+              <!-- Rows with docs -->
+              <line x1="0" y1="168" x2="700" y2="168" stroke="#f3f4f6" stroke-width="1"/>
+              <text x="16" y="157" fill="#374151" font-size="11.5">📄  Battlecard_Verifone_2023.pdf</text>
+              <text x="420" y="157" fill="#6b7280" font-size="11">2.4 MB</text>
+              <rect x="510" y="145" width="68" height="18" rx="9" fill="#d1fae5"/>
+              <text x="524" y="158" fill="#065f46" font-size="10" font-weight="600">Indexed</text>
+              <text x="634" y="157" fill="#16EAAA" font-size="14">✏</text>
+              <text x="660" y="157" fill="#ef4444" font-size="14">🗑</text>
+              <line x1="0" y1="199" x2="700" y2="199" stroke="#f3f4f6" stroke-width="1"/>
+              <text x="16" y="188" fill="#374151" font-size="11.5">📄  FAQ-questions-20240620.docx</text>
+              <text x="420" y="188" fill="#6b7280" font-size="11">0.8 MB</text>
+              <rect x="510" y="176" width="68" height="18" rx="9" fill="#d1fae5"/>
+              <text x="524" y="189" fill="#065f46" font-size="10" font-weight="600">Indexed</text>
+              <text x="634" y="188" fill="#16EAAA" font-size="14">✏</text>
+              <text x="660" y="188" fill="#ef4444" font-size="14">🗑</text>
+              <line x1="0" y1="230" x2="700" y2="230" stroke="#f3f4f6" stroke-width="1"/>
+              <text x="16" y="219" fill="#374151" font-size="11.5">📄  external_bic_money_german.pdf</text>
+              <text x="420" y="219" fill="#6b7280" font-size="11">5.1 MB</text>
+              <rect x="510" y="207" width="68" height="18" rx="9" fill="#d1fae5"/>
+              <text x="524" y="220" fill="#065f46" font-size="10" font-weight="600">Indexed</text>
+              <text x="634" y="219" fill="#16EAAA" font-size="14">✏</text>
+              <text x="660" y="219" fill="#ef4444" font-size="14">🗑</text>
+              <line x1="0" y1="261" x2="700" y2="261" stroke="#f3f4f6" stroke-width="1"/>
+              <text x="16" y="250" fill="#374151" font-size="11.5">📄  Ingenico_Driver_Installer_User_Guide.pdf</text>
+              <text x="420" y="250" fill="#6b7280" font-size="11">3.7 MB</text>
+              <rect x="510" y="238" width="74" height="18" rx="9" fill="#fef3c7"/>
+              <text x="522" y="251" fill="#92400e" font-size="10" font-weight="600">Processing</text>
+              <text x="634" y="250" fill="#16EAAA" font-size="14">✏</text>
+              <text x="660" y="250" fill="#ef4444" font-size="14">🗑</text>
+              <line x1="0" y1="292" x2="700" y2="292" stroke="#f3f4f6" stroke-width="1"/>
+              <text x="16" y="281" fill="#374151" font-size="11.5">📄  SharePoint_Migration_Guide.docx</text>
+              <text x="420" y="281" fill="#6b7280" font-size="11">1.2 MB</text>
+              <rect x="510" y="269" width="68" height="18" rx="9" fill="#d1fae5"/>
+              <text x="524" y="282" fill="#065f46" font-size="10" font-weight="600">Indexed</text>
+              <text x="634" y="281" fill="#16EAAA" font-size="14">✏</text>
+              <text x="660" y="281" fill="#ef4444" font-size="14">🗑</text>
+              <line x1="0" y1="323" x2="700" y2="323" stroke="#f3f4f6" stroke-width="1"/>
+              <text x="16" y="312" fill="#374151" font-size="11.5">📄  Drupal_Content_Strategy_2024.pdf</text>
+              <text x="420" y="312" fill="#6b7280" font-size="11">0.6 MB</text>
+              <rect x="510" y="300" width="68" height="18" rx="9" fill="#d1fae5"/>
+              <text x="524" y="313" fill="#065f46" font-size="10" font-weight="600">Indexed</text>
+              <text x="634" y="312" fill="#16EAAA" font-size="14">✏</text>
+              <text x="660" y="312" fill="#ef4444" font-size="14">🗑</text>
+              <line x1="0" y1="354" x2="700" y2="354" stroke="#f3f4f6" stroke-width="1"/>
+              <text x="16" y="343" fill="#374151" font-size="11.5">📄  AI_Governance_Policy_v2.docx</text>
+              <text x="420" y="343" fill="#6b7280" font-size="11">0.4 MB</text>
+              <rect x="510" y="331" width="68" height="18" rx="9" fill="#d1fae5"/>
+              <text x="524" y="344" fill="#065f46" font-size="10" font-weight="600">Indexed</text>
+              <text x="634" y="343" fill="#16EAAA" font-size="14">✏</text>
+              <text x="660" y="343" fill="#ef4444" font-size="14">🗑</text>
+              <!-- Pagination -->
+              <rect x="0" y="378" width="700" height="42" fill="#f9fafb"/>
+              <line x1="0" y1="378" x2="700" y2="378" stroke="#e5e7eb" stroke-width="1"/>
+              <text x="16" y="403" fill="#6b7280" font-size="11">▾  Run Action</text>
+              <text x="280" y="403" fill="#6b7280" font-size="11">Items per page:  10  ▾</text>
+              <text x="470" y="403" fill="#6b7280" font-size="11">1–7 of 7</text>
+              <text x="560" y="403" fill="#9ca3af" font-size="14">|⟨  ⟨  ⟩  ⟩|</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FEATURE 5: AI Agents (text left, screen right) ===== -->
+  <section class="feature-row">
+    <div class="container">
+      <div class="feature-split">
+        <div class="feature-text">
+          <span class="feature-tag">AI Agents</span>
+          <h2>Deploy AI agents tailored to your brand</h2>
+          <p>Launch conversational AI agents designed for your specific use cases — customer service, internal helpdesk, sales enablement, or any custom workflow. No-code configuration, enterprise-grade reliability.</p>
+          <p>Every agent is fully customizable: choose your LLM, define the tone of voice, restrict knowledge scope, and deploy in minutes across web, mobile, or API.</p>
+        </div>
+        <div class="feature-visual">
+          <div class="app-mockup">
+            <div class="app-mockup-chrome">
+              <span class="chrome-dot"></span><span class="chrome-dot"></span><span class="chrome-dot"></span>
+            </div>
+            <!-- AI Agent Config SVG -->
+            <svg viewBox="0 0 700 440" xmlns="http://www.w3.org/2000/svg" font-family="Inter, -apple-system, sans-serif">
+              <rect width="200" height="440" fill="#0D0E1A"/>
+              <circle cx="26" cy="30" r="11" fill="#16EAAA"/>
+              <circle cx="26" cy="30" r="6" fill="#0D0E1A" opacity="0.6"/>
+              <text x="44" y="35" fill="white" font-size="13" font-weight="700" letter-spacing="-0.3">OpenSync</text>
+              <line x1="16" y1="56" x2="184" y2="56" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+              <text x="32" y="83" fill="rgba(255,255,255,0.55)" font-size="11.5">⌂  Dashboard</text>
+              <text x="32" y="111" fill="rgba(255,255,255,0.55)" font-size="11.5">💬  Conversation log</text>
+              <text x="32" y="139" fill="rgba(255,255,255,0.55)" font-size="11.5">⚙  Application settings</text>
+              <text x="32" y="167" fill="rgba(255,255,255,0.55)" font-size="11.5">◈  Data sources</text>
+              <rect x="12" y="176" width="176" height="28" rx="6" fill="rgba(255,255,255,0.08)"/>
+              <text x="32" y="194" fill="rgba(255,255,255,0.9)" font-size="11.5" font-weight="600">🤖  AI Agents</text>
+              <text x="32" y="222" fill="rgba(255,255,255,0.55)" font-size="11.5">🧪  Tests</text>
+              <text x="32" y="250" fill="rgba(255,255,255,0.55)" font-size="11.5">👤  Users</text>
+              <!-- Content area -->
+              <rect x="200" y="0" width="500" height="440" fill="white"/>
+              <rect x="200" y="0" width="500" height="46" fill="#fafafa"/>
+              <line x1="200" y1="46" x2="700" y2="46" stroke="#e5e7eb" stroke-width="1"/>
+              <text x="220" y="28" fill="#111827" font-size="14" font-weight="600">🤖  AI Agents</text>
+              <!-- New agent button -->
+              <rect x="578" y="12" width="106" height="26" rx="7" fill="#8649DA"/>
+              <text x="592" y="30" fill="white" font-size="11" font-weight="600">+  New Agent</text>
+              <!-- Agent card 1 -->
+              <rect x="220" y="60" width="460" height="90" rx="10" fill="white" stroke="#e5e7eb" stroke-width="1"/>
+              <circle cx="252" cy="98" r="20" fill="linear-gradient(135deg,#8649DA,#1CF0F0)"/>
+              <circle cx="252" cy="98" r="20" fill="#8649DA"/>
+              <text x="244" y="103" fill="white" font-size="16">🤖</text>
+              <text x="282" y="82" fill="#111827" font-size="13" font-weight="700">Customer Service Assistant</text>
+              <text x="282" y="99" fill="#6b7280" font-size="11">Handles tier-1 support queries  ·  gpt-4o-mini  ·  French + English</text>
+              <text x="282" y="116" fill="#6b7280" font-size="10.5">Knowledge: Product docs, FAQ, Policies  ·  12,480 questions answered</text>
+              <rect x="582" y="69" width="68" height="18" rx="9" fill="#d1fae5"/>
+              <text x="596" y="82" fill="#065f46" font-size="10" font-weight="600">● Live</text>
+              <!-- Agent card 2 -->
+              <rect x="220" y="162" width="460" height="90" rx="10" fill="white" stroke="#e5e7eb" stroke-width="1"/>
+              <circle cx="252" cy="200" r="20" fill="#1C5AF0"/>
+              <text x="244" y="205" fill="white" font-size="16">💼</text>
+              <text x="282" y="184" fill="#111827" font-size="13" font-weight="700">Internal HR Helpdesk</text>
+              <text x="282" y="201" fill="#6b7280" font-size="11">Employee policy & benefits Q&A  ·  gpt-4o  ·  Multi-language</text>
+              <text x="282" y="218" fill="#6b7280" font-size="10.5">Knowledge: HR handbook, Benefits, Org chart  ·  4,231 questions answered</text>
+              <rect x="582" y="171" width="68" height="18" rx="9" fill="#d1fae5"/>
+              <text x="596" y="184" fill="#065f46" font-size="10" font-weight="600">● Live</text>
+              <!-- Agent card 3 -->
+              <rect x="220" y="264" width="460" height="90" rx="10" fill="white" stroke="#e5e7eb" stroke-width="1"/>
+              <circle cx="252" cy="302" r="20" fill="#16EAAA"/>
+              <text x="244" y="307" fill="#0D0E1A" font-size="16">📊</text>
+              <text x="282" y="286" fill="#111827" font-size="13" font-weight="700">Sales Enablement Bot</text>
+              <text x="282" y="303" fill="#6b7280" font-size="11">Product & pricing expert  ·  claude-3-5-sonnet  ·  English</text>
+              <text x="282" y="320" fill="#6b7280" font-size="10.5">Knowledge: Catalog, Case studies, Battlecards  ·  Configuring...</text>
+              <rect x="576" y="273" width="80" height="18" rx="9" fill="#fef3c7"/>
+              <text x="588" y="286" fill="#92400e" font-size="10" font-weight="600">⚙ Draft</text>
+              <!-- Stats footer -->
+              <rect x="200" y="378" width="500" height="62" fill="#f9fafb"/>
+              <line x1="200" y1="378" x2="700" y2="378" stroke="#e5e7eb" stroke-width="1"/>
+              <text x="236" y="400" fill="#374151" font-size="11" font-weight="600">3 agents</text>
+              <text x="236" y="418" fill="#9ca3af" font-size="10">2 live · 1 draft</text>
+              <text x="420" y="400" fill="#374151" font-size="11" font-weight="600">16,711</text>
+              <text x="420" y="418" fill="#9ca3af" font-size="10">questions this month</text>
+              <text x="584" y="400" fill="#374151" font-size="11" font-weight="600">US$2.84</text>
+              <text x="584" y="418" fill="#9ca3af" font-size="10">total LLM cost</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CUSTOM DEEP INTEGRATION ===== -->
+  <section class="integrations-section">
+    <div class="container">
+      <div class="integrations-header">
+        <h2>Custom deep integration</h2>
+        <p>To allow your business to leverage the power of your data in real time, we have developed a set of deep integrations that go beyond standard connectors.</p>
+      </div>
+      <div class="integration-cards">
+        <!-- Drupal card -->
+        <div class="integration-card">
+          <div class="integration-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M7 17L17 7M17 7H7M17 7v10"/>
+            </svg>
+          </div>
+          <!-- Drupal logo SVG -->
+          <svg class="integration-icon" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="30" cy="30" r="28" fill="#0678BE"/>
+            <path d="M30 8c-2 4-6 6-10 8 4 2 8 6 8 12 0 5-3 9-8 11 2 0 4 1 6 1 8 0 14-6 14-13 0-8-6-15-10-19z" fill="white"/>
+            <path d="M20 28c0-4 2-8 5-11-5 2-11 8-11 15 0 6 4 11 10 13-3-4-4-11-4-17z" fill="white" opacity="0.7"/>
+          </svg>
+          <h3>Drupal plugin</h3>
+          <p>Automated content embedding and real-time synchronization directly from your Drupal CMS. New content is indexed as soon as it's published — no manual steps required.</p>
+        </div>
+        <!-- SharePoint card -->
+        <div class="integration-card">
+          <div class="integration-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M7 17L17 7M17 7H7M17 7v10"/>
+            </svg>
+          </div>
+          <!-- SharePoint logo SVG -->
+          <svg class="integration-icon" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="38" cy="22" r="14" fill="#036C70"/>
+            <circle cx="26" cy="34" r="16" fill="#1A9BA1"/>
+            <circle cx="18" cy="44" r="10" fill="#37C6D0"/>
+            <rect x="14" y="34" width="32" height="20" rx="10" fill="#1A9BA1"/>
+            <rect x="8" y="44" width="28" height="12" rx="6" fill="#37C6D0"/>
+          </svg>
+          <h3>SharePoint</h3>
+          <p>Real-time indexing of your SharePoint Online libraries and document repositories. Permissions, metadata, and version history are fully respected during ingestion.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA SECTION ===== -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Ready to see it in action?</h2>
+      <p>Schedule a personalized demo and discover how Ragsense can transform the way your organization works with AI.</p>
+      <div class="cta-buttons">
+        <a href="contact.html" class="btn btn-primary">Request a Demo</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div>
+          <img src="./RAGSense – Universal AI Knowledge Platform_files/RAGsense white Horizontal.svg" alt="Ragsense" class="footer-logo">
+          <p style="color: rgba(255,255,255,0.8); margin: 0 0 1rem 0;">A joint venture of <strong style="color: var(--brand-cyan);">Proffice</strong> and <strong style="color: var(--brand-cyan);">Resulta</strong>.</p>
+          <p style="color: rgba(255,255,255,0.6); margin: 0; font-size: 0.875rem;">Custom AI solutions for global corporate clients with the highest security requirements.</p>
+        </div>
+        <div>
+          <h4 style="color: var(--white); margin-bottom: 1rem;">Platform</h4>
+          <ul class="footer-links">
+            <li><a href="features.html">Features</a></li>
+            <li><a href="platform.html#how">How It Works</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="platform.html#security">Technology</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="color: var(--white); margin-bottom: 1rem;">Offices</h4>
+          <ul class="footer-links">
+            <li><a href="contact.html">Paris, France</a></li>
+            <li><a href="contact.html">Brussels, Belgium</a></li>
+            <li><a href="contact.html">Bratislava, Slovakia</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p style="color: rgba(255,255,255,0.6); font-size: 0.75rem;">© 2025 Ragsense. A Proffice &amp; Resulta Joint Venture.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Calendly -->
+  <link href="./RAGSense – Universal AI Knowledge Platform_files/widget.css" rel="stylesheet">
+  <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+
+  <script>
+    // Mobile nav toggle
+    const navToggle = document.getElementById('navToggle');
+    const mainNav = document.getElementById('mainNav');
+    navToggle.addEventListener('click', () => { mainNav.classList.toggle('nav-open'); });
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => { mainNav.classList.remove('nav-open'); });
+    });
+
+    // Scroll effect for navbar
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('.nav');
+      if (window.scrollY > 50) {
+        nav.style.background = 'rgba(255, 255, 255, 0.98)';
+        nav.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.1)';
+      } else {
+        nav.style.background = 'rgba(255, 255, 255, 0.95)';
+        nav.style.boxShadow = 'none';
+      }
+    });
+
+    // Scroll animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.feature-split, .integration-card').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(24px)';
+      el.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
+      observer.observe(el);
+    });
+
+    // Calendly badge
+    window.addEventListener('load', function() {
+      if (window.Calendly) {
+        Calendly.initBadgeWidget({
+          url: 'https://calendly.com/jmurin-zars/30min',
+          text: 'Schedule a Call',
+          color: '#8649DA',
+          textColor: '#ffffff',
+          branding: false
+        });
+      }
+    });
+  </script>
+</body>
+</html>
